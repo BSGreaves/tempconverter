@@ -4,9 +4,9 @@
 
 //**Function: which radio button is checked?
 function determineConverter(clickEvent) {
-	if (document.getElementById("fahToCelRadio").checked) {
+	if (fahToCelRadio.checked) {
 		//Call a function to turn user input to celsius
-	} else if (document.getElementById("celToFahRadio").checked) {
+	} else if (celToFahRadio.checked) {
 		//Call a function to turn user input to fahrenheit
 	} else {
 		//Tell the user they need to select a radio button
@@ -61,6 +61,8 @@ var button = document.getElementById("converter");
 //**Grab the variable by DOM
 var outputDiv = document.getElementById("outputDiv")
 var tempToConvert = document.getElementById("userTemp").innerhtml
+var celToFahRadio = document.getElementById("celToFahRadio");
+var fahToCelRadio = document.getElementById("fahToCelRadio");
 
 
 
