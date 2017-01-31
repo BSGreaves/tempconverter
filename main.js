@@ -1,68 +1,99 @@
+//VARIABLES
+
+var outputDiv = document.getElementById("outputDiv");
+var userTemp = document.getElementById("userTemp").value;
+var celToFahRadio = document.getElementById("celToFahRadio");
+var fahToCelRadio = document.getElementById("fahToCelRadio");
+var convertButton = document.getElementById("convertButton");
+var clearButton = document.getElementById("clearButton");
+
 //FUNCTION DECLARATIONS
 
-
-
-//**Function: which radio button is checked?
-function determineConverter(clickEvent) {
-	if (fahToCelRadio.checked) {
-		//Call a function to turn user input to celsius
-	} else if (celToFahRadio.checked) {
-		//Call a function to turn user input to fahrenheit
-	} else {
-		//Tell the user they need to select a radio button
-	}
+//**Function to turn user input into a number
+function parseInput(input) {
+	return parseFloat(input); 
 }
-
-//** Assign a function to be executed when the button is clicked
-button.addEventListener("click", determineConverter);
 
 //** Assign a function to be executed when the user presses enter 
-document.addEventListener("keypress", function (e) {
-	if (13 === e.which) {
-		determineConverter();
-	}
-}
-
-
+// document.addEventListener("keypress", function (e) {
+// 	if (13 === e.which) {
+// 		determineConverter();
+// 	}
+// }
 
 //**Function: F to C
-function toCelsius(userFahrenheit) {
-	var outputCelsius = (userFahrenheit - 32) * (5/9);
-	return outputCelsius;
+function toCelsius(fahrenheit) {
+	var celsius = (fahrenheit - 32) * (5/9);
+	return celsius;
 }
 
 
 //**Function: C to F
-function toFahrenheit (userCelsius) {
-	var outputFahrenheit = (userCelsius) * (9/5) + 32;
-	return outputFahrenheit;
+function toFahrenheit (celsius) {
+	var fahrenheit = (celsius) * (9/5) + 32;
+	return fahrenheit;
 }
 
+//**Function: which radio button is checked?
+// function convertTemp() {
+// 	var userTemp = parseInput(document.getElementById("userTemp").value);
+// 	if (isNaN(userTemp)) {
+// 		return outputDiv.innerHTML = "Please write a number.";
+// 	}
+// 	if (fahToCelRadio.checked) {
+// 		return outputDiv.innerHTML = toCelsius(userTemp);
+// 	} else if (celToFahRadio.checked) {
+// 		return outputDiv.innerHTML = toFahrenheit(userTemp);
+// 	} else {
+// 		return outputDiv.innerHTML = "Please select whether to convert to celsius or fahrenheit.";
+// 	}
+// }
 
-
-//**Function to turn user input into an integer
-function validateInput(userInput) {
-	userInput = userInput.parseInt;
-	if (Number.isInteger(userInput)) {
-		//Do something
+function convertTemp() {
+	var userTemp = parseInput(document.getElementById("userTemp").value);
+	if (isNaN(userTemp)) {
+		return outputDiv.innerHTML = "Please write a number.";
+	}
+	if (fahToCelRadio.checked) {
+		toCelsius(userTemp);
+		if (userTemp > 32) {
+			return outputDiv.innerHTML = "<span class='red'>" + userTemp + "</span>";
+		} else if (userTemp < 0) {
+			return outputDiv.innerHTML = "<span class='blue'>" + userTemp + "</span>";
+		} else {
+			return outputDiv.innerHTML = "<span class='green'>" + userTemp + "</span>";
+		}
+	} else if (celToFahRadio.checked) {
+		toFahrenheit(userTemp);
+		if (userTemp > 90) {
+			return outputDiv.innerHTML = "<span class='red'>" + userTemp + "</span>";
+		} else if (userTemp < 32) {
+			return outputDiv.innerHTML = "<span class='blue'>" + userTemp + "</span>";
+		} else {
+			return outputDiv.innerHTML = "<span class='green'>" + userTemp + "</span>";
+		}
 	} else {
-		//throw an error at the user
+		return outputDiv.innerHTML = "Please select whether to convert to celsius or fahrenheit.";
 	}
 }
 
-//**Get a reference to the button element in the DOM
-var button = document.getElementById("converter");
+
+
+// console.log("13: ", validateInput(13));
+// console.log("1.5: ", validateInput(1.5));
+// console.log("13 string: ", validateInput("13"));
+// console.log("1.5 string: ", validateInput("1.5"));
+// console.log("clown: ", validateInput("clown"));
+
+//EVENT LISTENERS
+
+clearButton.addEventListener("click", function() {
+	document.getElementById("tempconverter").reset();
+})
+convertButton.addEventListener("click", convertTemp);
 
 
 
-
-//VARIABLES
-
-//**Grab the variable by DOM
-var outputDiv = document.getElementById("outputDiv")
-var tempToConvert = document.getElementById("userTemp").innerhtml
-var celToFahRadio = document.getElementById("celToFahRadio");
-var fahToCelRadio = document.getElementById("fahToCelRadio");
 
 
 
