@@ -15,18 +15,19 @@ For any other temperature, the color should be green.
 		<link rel="stylesheet" type="text/css" href="main.css">
 	</head>
 	<body>
-		<h1>Temperature converter</h1>
-		<form id="tempconverter" method="get" action="#">
+		<h2>Temperature converter</h2>
+		<form id="mainForm" method="get" action="#">
 			<fieldset>
-				<label for="usertemp">Input a temperature and whether you need celsius or fahrenheit</label><input type="text" name="usertemp" id="userTemp"><br>
+				<label for="userinput">Give me a number!</label><br><input type="text" name="userinput" id="userInput"><br>
+				<label for="scale">What conversion do you need?</label><br>
 				<input type="radio" name="scale" value="fahrenheit" id="fahToCelRadio">Fahrenheit to Celsius<br>
 				<input type="radio" name="scale" value="celcius" id="celToFahRadio">Celcius to Fahrenheit<br>
 			</fieldset>
 		</form>
-		<button id="convertButton">Convert!</button><br>
+		<button id="convertButton">Convert</button>
 		<button id="clearButton">Clear</button>
 
-		<div id="outputDiv">This is my output div.</div>
+		<div id="outputDiv">Results will show here</div>
 		<div id="outputtemperature">
 		<script type="text/javascript" src="main.js"></script>
 

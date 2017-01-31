@@ -1,3 +1,23 @@
+body {
+	font-family: Futura,Trebuchet MS,Arial,sans-serif;
+	width: 90%;
+	background-color: #050A40;
+	margin: 10px 30px;
+	font-size: 1em;
+}
+
+h2 {
+	color: white;
+}
+
+fieldset {
+	box-shadow: 3px 3px 5px slategrey;
+	border: 2px solid lightgrey;
+	background-color: white;
+	border-radius: 3px;
+	padding-left: 10px;
+	max-width: 260px;
+}
 .red {
 	color: red;
 }
@@ -8,4 +28,26 @@
 
 .green {
 	color: green;
+}
+
+#outputDiv {
+	box-shadow: 3px 3px 5px slategrey;
+	min-height: 75px;
+	max-width: 260px;
+	border: 2px solid lightgrey;
+	border-radius: 3px;
+	padding-left: 10px;
+	padding-right: 15px;
+	background-color: white;
+}
+
+button {
+	font-family: Futura,Trebuchet MS,Arial,sans-serif;
+	font-size: 0.8em;
+	margin: 20px 0;
+	box-shadow: 2px 2px 3px slategrey;
+}
+
+button + button {
+	margin-left: 10px;
 }

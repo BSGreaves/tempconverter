@@ -1,28 +1,34 @@
 //VARIABLES
 
 var outputDiv = document.getElementById("outputDiv");
-var userTemp = document.getElementById("userTemp").value;
+var userInput = document.getElementById("userInput");
 var celToFahRadio = document.getElementById("celToFahRadio");
 var fahToCelRadio = document.getElementById("fahToCelRadio");
 var convertButton = document.getElementById("convertButton");
 var clearButton = document.getElementById("clearButton");
+var mainForm = document.getElementById("mainForm");
 
 //FUNCTION DECLARATIONS
 
-function parseInput(input) {
+//Turns input into a float
+//Decided to use parsefloat so that any decimels will be used in the conversion math
+function inputToNumber(input) {
 	return input = parseFloat(input);
 }
 
+//Fahrenheit to Celsius, and rounds it off
 function toCelsius(fahrenheit) {
 	var celsius = (fahrenheit - 32) * (5/9);
 	return celsius = Math.round(celsius);
 }
 
+//Celsius to Fahrenheit, and rounds it off
 function toFahrenheit (celsius) {
 	var fahrenheit = (celsius) * (9/5) + 32;
 	return fahrenheit = Math.round(fahrenheit);
 }
 
+//Determines the color of the text, if converting to Fahrenheit
 function fahDetermineColor (temp) {
 	if (temp > 90) {
 		return "red";
@@ -33,6 +39,7 @@ function fahDetermineColor (temp) {
 	}
 }
 
+//Determines the color of the text, if converting to Celsius
 function celDetermineColor (temp) {
 	if (temp > 32) {
 		return "red";
@@ -43,14 +50,16 @@ function celDetermineColor (temp) {
 	}
 }
 
+//Outputs the result, in the correct color
 function outputToDiv (div, color, temp, scale) {
 	return div.innerHTML = "<span class='" + color + "'>" + temp + " degrees " + scale + "</span>";
 }
 
+//The main function which is tiggered by the user
 function convertTemp() {
-	var userTemp = parseInput(document.getElementById("userTemp").value);
+	var userTemp = inputToNumber(document.getElementById("userInput").value);
 	if (isNaN(userTemp)) {
-		return outputDiv.innerHTML = "Please type a number.";
+		return outputDiv.innerHTML = "<span class='red'>Please type a number.</span>";
 	}
 	if (fahToCelRadio.checked) {
 		userTemp = toCelsius(userTemp);
@@ -61,24 +70,26 @@ function convertTemp() {
 		outputColor = fahDetermineColor(userTemp);
 		return outputToDiv(outputDiv, outputColor, userTemp, "Fahrenheit");
 	} else {
-		return outputDiv.innerHTML = "Please select whether to convert to celsius or fahrenheit.";
+		return outputDiv.innerHTML = "<span class='red'>Please select whether to convert to Celsius or Fahrenheit.</span>";
 	}
 }
 
 //EVENT LISTENERS
 
+//Clear button
 clearButton.addEventListener("click", function() {
-	document.getElementById("tempconverter").reset();
+	document.getElementById("mainForm").reset();
 	outputDiv.innerHTML = "";
 })
+//Convert button
 convertButton.addEventListener("click", convertTemp);
 
-//** Assign a function to be executed when the user presses enter 
-// document.addEventListener("keypress", function (e) {
-// 	if (13 === e.which) {
-// 		determineConverter();
-// 	}
-// }
+//In case they hit enter 
+mainForm.addEventListener("keypress", function (e) {
+	if (13 === e.keyCode) {
+		convertTemp();
+	}
+});
 
 
 
