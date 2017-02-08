@@ -46,24 +46,23 @@ function celDetermineColor (temp) {
 }
 
 function outputToDiv (div, color, temp, scale) {
-	return div.innerHTML = "<span class='" + color + "'>" + temp + " degrees " + scale + "</span>";
+	div.innerHTML = "<span class='" + color + "'>" + temp + " degrees " + scale + "</span>";
 }
 
 function convertTemp() {
 	var userTemp = inputToNumber(document.getElementById("userInput").value);
 	if (isNaN(userTemp)) {
-		return outputDiv.innerHTML = "<span class='red'>Please type a number.</span>";
-	}
-	if (fahToCelRadio.checked) {
+		outputDiv.innerHTML = "<span class='red'>Please type a number.</span>";
+	} else if (fahToCelRadio.checked) {
 		userTemp = toCelsius(userTemp);
 		outputColor = celDetermineColor(userTemp);
-		return outputToDiv(outputDiv, outputColor, userTemp, "Celsius");
+		outputToDiv(outputDiv, outputColor, userTemp, "Celsius");
 	} else if (celToFahRadio.checked) {
 		userTemp = toFahrenheit(userTemp);
 		outputColor = fahDetermineColor(userTemp);
-		return outputToDiv(outputDiv, outputColor, userTemp, "Fahrenheit");
+		outputToDiv(outputDiv, outputColor, userTemp, "Fahrenheit");
 	} else {
-		return outputDiv.innerHTML = "<span class='red'>Please select whether to convert to Celsius or Fahrenheit.</span>";
+		outputDiv.innerHTML = "<span class='red'>Please select whether to convert to Celsius or Fahrenheit.</span>";
 	}
 }
 
