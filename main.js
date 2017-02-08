@@ -77,7 +77,7 @@ convertButton.addEventListener("click", convertTemp);
 
 //In case they hit enter
 mainForm.addEventListener("keypress", function (e) {
-	if (13 === e.keyCode) {
+	if (e.keyCode === 13) {
 		convertTemp();
 	}
 });
